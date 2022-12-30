@@ -9,11 +9,12 @@ let weather = () => {
 
     if(cityValue.length === 0){
         res.innerHTML = `<p>Insira um nome de cidade </p>`
-    } else{
-        const url = `https://api.openweathermap.org/data/2.5/weather?q=${cityValue}&appid=${key}&units=metric`;
+    } else {
+        let url = `https://api.openweathermap.org/data/2.5/weather?q=${cityValue}&appid=${key}&units=metric`;
 
+        city.value ="";
+        
         fetch(url).then((resp) => resp.json())
-
         .then((data) => {
             console.log(data);
             console.log(data.weather[0].icon);
@@ -22,7 +23,7 @@ let weather = () => {
             console.log(data.name);
             console.log(data.main.temp_min);
             console.log(data.main.temp_max);
-            result.innerHTML = 
+            res.innerHTML = 
             ` <h2>${data.name}</h2>
             <h4 class="weather">${data.weather[0].main}</h4>
             <h4 class="desc">${data.weather[0].description}</h4>
@@ -40,9 +41,10 @@ let weather = () => {
             </div>`;
         })
         .catch(() => {
-            res.innerHTML = `<p> Cidade não encontrada </p>`;
+            res.innerHTML = `<p> Cidade não encontrada :( </p>`;
         });
     }
 };
+
 searchBtn.addEventListener("click", weather);
 window.addEventListener('load', weather);
