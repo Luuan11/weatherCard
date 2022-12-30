@@ -4,6 +4,12 @@ let searchBtn = document.querySelector('.btn-search');
 
 let city = document.querySelector('.city-input');
 
+document.addEventListener('keypress', function(e){
+    if(e.key === 'Enter'){
+       weather();
+    }
+ }, false);
+
 let weather = () => {
     let cityValue = city.value;
 
@@ -13,7 +19,7 @@ let weather = () => {
         let url = `https://api.openweathermap.org/data/2.5/weather?q=${cityValue}&appid=${key}&units=metric`;
 
         city.value ="";
-        
+
         fetch(url).then((resp) => resp.json())
         .then((data) => {
             console.log(data);
@@ -24,11 +30,13 @@ let weather = () => {
             console.log(data.main.temp_min);
             console.log(data.main.temp_max);
             res.innerHTML = 
-            ` <h2>${data.name}</h2>
-            <h4 class="weather">${data.weather[0].main}</h4>
-            <h4 class="desc">${data.weather[0].description}</h4>
+            `<h1>${data.name}</h1>
+            <div class="weather_info">
+                <h4 class="weather">${data.weather[0].main}</h4>
+                <h4 class="weather_desc">${data.weather[0].description}</h4>
+            </div>
             <img src="https://openweathermap.org/img/w/${data.weather[0].icon}.png">
-            <h1>${data.main.temp} &#176;</h1>
+            <h2>${data.main.temp}&#176;</h2>
             <div class="temp-container">
                 <div>
                     <h4 class="title">min</h4>
@@ -38,7 +46,11 @@ let weather = () => {
                     <h4 class="title">max</h4>
                     <h4 class="temp">${data.main.temp_max}&#176;</h4>
                 </div>
-            </div>`;
+            </div>
+                <div class="weather-search">
+                    <p>Você pesquisou por <span>${data.name}</span>!</p>
+                </div>
+            `;
         })
         .catch(() => {
             res.innerHTML = `<p> Cidade não encontrada :( </p>`;
@@ -47,4 +59,4 @@ let weather = () => {
 };
 
 searchBtn.addEventListener("click", weather);
-window.addEventListener('load', weather);
+window.addEventListener("load", weather);

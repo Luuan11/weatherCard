@@ -34,10 +34,6 @@ body{
     transition: all 0.3s;
 }
 
-.container:hover{
-    transform: scale(1.1);
-}
-
 .city-search{
     display: grid;
     font-size: 1em;
@@ -60,4 +56,63 @@ body{
 .city-search button{
     border-radius: 5px;
     cursor: pointer;
+    transition: .3s;
+}
+
+.city-search button:hover{
+    color: #8f32e6;
+}
+
+/* Js classes */
+.res{
+    text-align: center;
+}
+
+.res h1{
+    font-size: 2em;
+    margin: 12px;
+    color: #8f32e6;
+    letter-spacing: 3px;
+}
+
+.weather_info{
+    display: flex;
+    justify-content: center;
+}
+
+.weather_info h4{
+    padding: 0 8px 0 8px;
+    letter-spacing: 1px;
+}
+
+.res h2{
+    font-size: 2.5em;
+    letter-spacing: 3px;
+}
+
+.res img{
+    margin: 12px;
+    width: 80px;
+}
+
+.temp-container{
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.temp-container div {
+    padding: 0.3em 1em;
+}
+.temp-container div:first-child {
+    border-right: 1px solid #8f32e6;
+}
+
+.weather-search{
+    margin-top: 15px;
+}
+
+.weather-search span{
+    color: #9843e7;
+    border-bottom: 1px solid #9843e7;
 }
